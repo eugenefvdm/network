@@ -1,5 +1,5 @@
 {
-    "name": "eugene/routeros",
+    "name": "eugene/network",
     "description": "A basic networking library.",
     "type": "library",
     "license": "MIT",
