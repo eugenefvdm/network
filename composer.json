@@ -1,6 +1,6 @@
 {
-    "name": "eugenevdm/network",
-    "description": "A basic networking library.",
+    "name": "eugenevdm/monitor",
+    "description": "A basic network and performance monitoring library.",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -11,7 +11,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Network\\": "src\\Network\\"
+            "Monitor\\": "src\\Monitor\\"
         }
     },
     "minimum-stability": "stable"

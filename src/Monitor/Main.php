@@ -2,6 +2,9 @@
 
 require_once __DIR__ . '/../../vendor/autoload.php'; // Autoload files using Composer autoload
 
-use Network\Network;
+use Monitor\Monitor;
 
-echo Network::ping('196.25.1.1');
+$monitor = new Monitor();
+$monitor->start();
+sleep(1);
+$monitor->show();
