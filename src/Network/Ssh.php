@@ -5,47 +5,36 @@ namespace Network;
 class Ssh
 {
 
+    private $connection;
+
     function __construct($host, $username, $password, $port = 22)
     {
-
-        $connection = ssh2_connect($host, 22);
-        ssh2_auth_password($connection, $username, $password);
-
-        $stream = ssh2_exec($connection, '/usr/local/bin/php -i');
-
-//        $methods = array(
-//            'kex' => 'diffie-hellman-group1-sha1',
-//            'client_to_server' => array(
-//                'crypt' => '3des-cbc',
-//                'comp' => 'none'),
-//            'server_to_client' => array(
-//                'crypt' => 'aes256-cbc,aes192-cbc,aes128-cbc',
-//                'comp' => 'none'));
-//
-//        $callbacks = array('disconnect' => 'my_ssh_disconnect');
-//
-//        $connection = ssh2_connect($host, $port, $methods, $callbacks);
-//        if (!$connection) die('Connection failed');
+        $this->connection = ssh2_connect($host, 22);
+        ssh2_auth_password($this->connection, $username, $password);
     }
 
+    public function os()
+    {
+        $command = 'cat /etc/issue';
+        $this->execute($command);
+    }
+
+    public function uptime()
+    {
+        $command = 'uptime';
+        $this->execute($command);
+    }
+
+    /**
+     * @param $command
+     */
+    public function execute($command)
+    {
+        $stream = ssh2_exec($this->connection, $command);
+        stream_set_blocking($stream, true);
+        $stream_out = ssh2_fetch_stream($stream, SSH2_STREAM_STDIO);
+        echo stream_get_contents($stream_out);
+    }
 
 }
 
-function my_ssh_disconnect($reason, $message, $language) {
-    printf("Server disconnected with reason code [%d] and message: %s\n",
-        $reason, $message);
-}
-
-//$methods = array(
-//    'kex' => 'diffie-hellman-group1-sha1',
-//    'client_to_server' => array(
-//        'crypt' => '3des-cbc',
-//        'comp' => 'none'),
-//    'server_to_client' => array(
-//        'crypt' => 'aes256-cbc,aes192-cbc,aes128-cbc',
-//        'comp' => 'none'));
-//
-//$callbacks = array('disconnect' => 'my_ssh_disconnect');
-//
-//$connection = ssh2_connect('shell.example.com', 22, $methods, $callbacks);
-//if (!$connection) die('Connection failed');

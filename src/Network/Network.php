@@ -13,10 +13,6 @@ class Network
         return $result;
     }
 
-    public static function ssh() {
-
-    }
-
     public static function test()
     {
         echo self::ping('196.25.1.1');

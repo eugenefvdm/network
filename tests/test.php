@@ -7,10 +7,8 @@ use Network\Ssh;
 
 Network::test(); // Test ping
 
-$ssh = new Ssh('dte.snowball.co.za', 'root', 'QWad2$CPad1$');
-//$result = new Ssh();
+$config = \Helpers\Helpers::Config('ssh');
 
-
-
-// Go to the terminal (or create a PHP web server inside "tests" dir) and type:
-// php tests/test.php
+$host = new Ssh($config['host'], $config['username'], $config['password']);
+$host->os();
+$host->uptime();

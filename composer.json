@@ -14,5 +14,8 @@
             "Network\\": "src\\Network\\"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "require": {
+        "eugenevdm/helpers": "^1.0"
+    }
 }
