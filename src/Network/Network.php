@@ -1,7 +1,5 @@
 <?php
 
-// A really cool package
-
 namespace Network;
 
 class Network
