@@ -13,6 +13,15 @@ class Network
         return $result;
     }
 
+    /**
+     * Traceroute
+     *
+     * The default flag '-n' does not resolve DNS
+     *
+     * @param $ip_address
+     * @param string $flags
+     * @return string
+     */
     public static function traceroute($ip_address, $flags = '-n') {
         $output = shell_exec("traceroute $flags $ip_address 2>&1");
         return $output;
