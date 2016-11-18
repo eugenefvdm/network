@@ -28,7 +28,9 @@ You only need the helpers if you want to store your SSH credentials separately.
 
 ```php
 $config = \Helpers\Helpers::Config('ssh');
-$host = new Ssh($config['host'], $config['username'], $config['password']);
-$host->os();
-$host->uptime();
+$host = new Linux($config['host'], $config['username'], $config['password']);
+var_dump ($host->dns());;
+echo $host->version() . "\n";
+echo $host->uptime() . "\n";
+echo $host->ping() . "\n";
 ```
