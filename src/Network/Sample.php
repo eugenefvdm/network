@@ -5,3 +5,5 @@ require_once __DIR__ . '/../../vendor/autoload.php'; // Autoload files using Com
 use Network\Network;
 
 echo Network::ping('196.25.1.1');
+
+echo Network::traceroute('196.25.1.1');
