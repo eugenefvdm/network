@@ -1,28 +1,30 @@
 # network
 
-Description
+##Description
 
 A PHP network library that has various common network functions.
 
-Requires
+## Installation
+
+`composer require eugenevdm/network`
 
 You only need the helpers if you want to store your SSH credentials separately.
 
 `composer require eugenevdm/helpers`
 
-Commands
+## Commands
 
 `echo Network::ping('196.25.1.1');`
 
 `Network::traceroute('196.25.1.1');`
 
-SSH
+### SSH
 
-Installation
+#### SSH Installation
 
 `sudo apt-get install php-ssh2 && sudo /etc/init.d/apache2 restart`
 
-Usage
+#### SSH Usage
 
 ```php
 $config = \Helpers\Helpers::Config('ssh');
