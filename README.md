@@ -8,7 +8,7 @@ A PHP network library that provides various common network functions.
 
 `composer require eugenevdm/network`
 
-You only need the helpers if you want to store your SSH credentials separately.
+Depends on eugenevdm/helpers which is already loaded in composer.json
 
 `composer require eugenevdm/helpers`
 
