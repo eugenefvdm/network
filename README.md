@@ -4,6 +4,15 @@
 
 A PHP network library that provides various common network functions.
 
+## List of all commands for Linux
+
+* DNS
+* memory
+* ping
+* traceroute
+* uptime
+* version 
+
 ## Installation
 
 `composer require eugenevdm/network`
