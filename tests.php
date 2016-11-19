@@ -18,6 +18,9 @@ echo $host->memory();
 die(1);
 
 var_dump ($host->dns());;
-echo $host->version() . "\n";
-echo $host->uptime() . "\n";
+echo $host->memory() . "\n";
 echo $host->ping() . "\n";
+echo $host->uptime() . "\n";
+echo $host->version() . "\n";
+
+

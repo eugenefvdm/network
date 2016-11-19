@@ -21,11 +21,13 @@ Depends on eugenevdm/helpers which is already loaded in composer.json
 
 `composer require eugenevdm/helpers`
 
-## Commands
+## Example Commands
 
 `echo Network::ping('196.25.1.1');`
 
 `echo Network::traceroute('196.25.1.1');`
+
+See tests.php in / for more examples.
 
 ### SSH
 
