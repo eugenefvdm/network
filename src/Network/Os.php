@@ -7,6 +7,8 @@ abstract class Os
 
     abstract protected function dns();
 
+    abstract protected function memory();
+
     abstract protected function ping();
 
     abstract protected function uptime();

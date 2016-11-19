@@ -21,6 +21,17 @@ class Linux extends Os
         return $matches[1];
     }
 
+    /**
+     * Return amount of RAM on host
+     *
+     * https://www.cyberciti.biz/tips/how-much-ram-does-my-linux-system.html
+     *
+     * @return string
+     */
+    public function memory() {
+        return $this->ssh->execute('free -m');
+    }
+
     public function ping()
     {
         return Network::ping($this->host);
