@@ -27,7 +27,7 @@ Depends on eugenevdm/helpers which is already loaded in composer.json
 
 `echo Network::traceroute('196.25.1.1');`
 
-See tests.php in / for more examples.
+See `tests.php` in / for more examples.
 
 ### SSH
 
