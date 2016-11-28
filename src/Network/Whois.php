@@ -2,6 +2,8 @@
 
 namespace Network;
 
+use DateTime;
+
 class Whois
 {
 
@@ -19,9 +21,37 @@ class Whois
      */
     function __construct($domain)
     {
+        $this->domain = $domain;
         $output = shell_exec("whois $domain");
-        $lines  = explode("\n", $output);
-        $this->ExtractWhoisInformation($lines);
+        // Check if .co.uk and if so use ExtractUkWhoisInformation
+        if (strpos($domain, '.co.uk')) {
+            $this->ExtractUkWhoisInformation($output);
+        } else {
+            $lines  = explode("\n", $output);
+            $this->ExtractWhoisInformation($lines);
+        }
+    }
+
+    private function ExtractUkWhoisInformation($output) {
+
+        preg_match('/Registrar:\n\s+(.+)/', $output, $matches);
+        $this->registrar = $matches[1];
+
+        preg_match('/Registrant:\n\s+(.+)/', $output, $matches);
+        $this->registrant = $matches[1];
+
+        preg_match('/Expiry date:  (.+)/', $output, $matches);
+        $whois_date = $matches[1];
+        $this->expires_at = date('Y-m-d H:i:s', strtotime($whois_date));
+
+        preg_match_all('/Name servers:\n\s+(.+)\n\s+(.+)\n\s+(.+)/', $output, $matches);
+        unset($matches[0]);
+        $name_servers=[];
+        foreach ($matches as $match) {
+            $name_servers[] = $match[0];
+        }
+        $this->name_servers = $name_servers;
+
     }
 
     /**
@@ -43,14 +73,12 @@ class Whois
                     case 'Name Server' :
                         $this->appendNameServer($value);
                         break;
-                    case 'Domain Name' :
-                        $this->domain = $value;
-                        break;
                     case 'Registrant Name' :
                         $this->registrant = $value;
                         break;
                     case 'Registry Expiry Date' :
-                        $this->expires_at = $value;
+                        $dt = new DateTime($value);
+                        $this->expires_at = $dt->format('Y-m-d H:i:s');;
                         break;
                     case 'Registrar Registration Expiration Date' :
                         $this->expires_at = $value;
