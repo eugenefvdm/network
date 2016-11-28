@@ -52,6 +52,9 @@ class Whois
                     case 'Registry Expiry Date' :
                         $this->expires_at = $value;
                         break;
+                    case 'Registrar' :
+                        $this->registrar = $value;
+                        break;
                     case 'Sponsoring Registrar' :
                         $this->registrar = $value;
                         break;
