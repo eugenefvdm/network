@@ -27,4 +27,9 @@ class Network
         return $output;
     }
 
+    public static function whois($domain) {
+        $domain = new Whois($domain);
+        return $domain;
+    }
+
 }

@@ -11,23 +11,23 @@ A PHP network library that provides various common network functions.
 * ping
 * traceroute
 * uptime
-* version 
+* version
+* whois
 
 ## Installation
 
 `composer require eugenevdm/network`
 
-Depends on eugenevdm/helpers which is already loaded in composer.json
-
-`composer require eugenevdm/helpers`
-
 ## Example Commands
+
+`$result = Network::whois('snowball.co.za');
+ die(print_r($result, 1));`
 
 `echo Network::ping('196.25.1.1');`
 
 `echo Network::traceroute('196.25.1.1');`
 
-See `tests.php` in / for more examples.
+See `tests.php` in the root folder for more examples.
 
 ### SSH
 
