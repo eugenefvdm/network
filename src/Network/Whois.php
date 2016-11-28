@@ -3,6 +3,7 @@
 namespace Network;
 
 use DateTime;
+use Helpers\Helpers;
 
 class Whois
 {
@@ -41,8 +42,7 @@ class Whois
         $this->registrant = $matches[1];
 
         preg_match('/Expiry date:  (.+)/', $output, $matches);
-        $whois_date = $matches[1];
-        $this->expires_at = date('Y-m-d H:i:s', strtotime($whois_date));
+        $this->expires_at = Helpers::date_normalize($matches[1]);
 
         preg_match_all('/Name servers:\n\s+(.+)\n\s+(.+)\n\s+(.+)/', $output, $matches);
         unset($matches[0]);
@@ -71,17 +71,16 @@ class Whois
                 $value = substr($line, $pos + 2);
                 switch ($key) {
                     case 'Name Server' :
-                        $this->appendNameServer($value);
+                        $this->name_servers[] = $value; // Append name servers
                         break;
                     case 'Registrant Name' :
                         $this->registrant = $value;
                         break;
                     case 'Registry Expiry Date' :
-                        $dt = new DateTime($value);
-                        $this->expires_at = $dt->format('Y-m-d H:i:s');;
+                        $this->expires_at = Helpers::date_normalize($value);
                         break;
                     case 'Registrar Registration Expiration Date' :
-                        $this->expires_at = $value;
+                        $this->expires_at = Helpers::date_normalize($value);
                         break;
                     case 'Registrar' :
                         $this->registrar = $value;
@@ -93,11 +92,6 @@ class Whois
                 $result[$key] = $value;
             }
         }
-    }
-
-    private function appendNameServer($value)
-    {
-        $this->name_servers[] = $value;
     }
 
 }
