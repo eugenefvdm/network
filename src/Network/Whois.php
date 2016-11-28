@@ -71,10 +71,10 @@ class Whois
                 $value = substr($line, $pos + 2);
                 switch ($key) {
                     case 'Name Server' :
-                        $this->name_servers[] = $value; // Append name servers
+                        $this->name_servers[] = trim($value); // Append name servers
                         break;
                     case 'Registrant Name' :
-                        $this->registrant = $value;
+                        $this->registrant = trim($value);
                         break;
                     case 'Registry Expiry Date' :
                         $this->expires_at = Helpers::date_normalize($value);
@@ -82,11 +82,14 @@ class Whois
                     case 'Registrar Registration Expiration Date' :
                         $this->expires_at = Helpers::date_normalize($value);
                         break;
+                    case 'Domain Expiration Date' :
+                        $this->expires_at = Helpers::date_normalize($value);
+                        break;
                     case 'Registrar' :
-                        $this->registrar = $value;
+                        $this->registrar = trim($value);
                         break;
                     case 'Sponsoring Registrar' :
-                        $this->registrar = $value;
+                        $this->registrar = trim($value);
                         break;
                 }
                 $result[$key] = $value;
