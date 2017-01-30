@@ -4,7 +4,9 @@ require_once __DIR__ . '/vendor/autoload.php'; // Autoload files using Composer 
 
 use Network\Network;
 
-$result = Network::whois('blueviews.co');
+$result = Network::whois('chabaccounting.co.za');
+//$result = Network::whois('graftink.co.za');
+//$result = Network::whois('blueviews.co');
 //$result = Network::whois('gomusic.mobi');
 //$result = Network::whois('larakruger.com');
 //$result = Network::whois('limitation-review.co.uk');

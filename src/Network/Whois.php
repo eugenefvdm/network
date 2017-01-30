@@ -71,7 +71,7 @@ class Whois
                 $value = substr($line, $pos + 2);
                 switch ($key) {
                     case 'Name Server' :
-                        $this->name_servers[] = trim($value); // Append name servers
+                        $this->name_servers[] = trim(strtolower($value)); // Append name servers
                         break;
                     case 'Registrant Name' :
                         $this->registrant = trim($value);
