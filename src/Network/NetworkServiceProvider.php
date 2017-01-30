@@ -12,7 +12,7 @@ class FeatureServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register() 
     {
         $this->app->bind('Network', function ($app) {
 
