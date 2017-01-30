@@ -5,14 +5,14 @@ namespace Eugenevdm\Feature;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 
-class FeatureServiceProvider extends ServiceProvider
+class NetworkServiceProvider extends ServiceProvider
 {
     /**
      * Register the service provider.
      *
      * @return void
      */
-    public function register() 
+    public function register()
     {
         $this->app->bind('Network', function ($app) {
 
