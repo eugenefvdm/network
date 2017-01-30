@@ -13,6 +13,7 @@ class Whois
     public $name_servers;
     public $registrar;
     public $registrant;
+    public $error;
 
     /**
      *
@@ -24,6 +25,12 @@ class Whois
     {
         $this->domain = $domain;
         $output = shell_exec("whois $domain");
+
+        if (strpos($output, 'Please go away for') !== true) {
+            $this->error = 'Rate limit exceeded: ' . $output;
+        }
+
+        //echo "Debug '" . $output . "'";
         // Check if .co.uk and if so use ExtractUkWhoisInformation
         if (strpos($domain, '.co.uk')) {
             $this->ExtractUkWhoisInformation($output);
@@ -33,7 +40,7 @@ class Whois
         }
     }
 
-    private function ExtractUkWhoisInformation($output) {
+    private function ExtractUkWhoisInformation($output, $error = "") {
 
         preg_match('/Registrar:\n\s+(.+)/', $output, $matches);
         $this->registrar = $matches[1];
@@ -51,6 +58,8 @@ class Whois
             $name_servers[] = $match[0];
         }
         $this->name_servers = $name_servers;
+
+
 
     }
 

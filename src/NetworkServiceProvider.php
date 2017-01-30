@@ -1,6 +1,6 @@
 <?php
 
-namespace Eugenevdm\Feature;
+namespace Eugenevdm\Network;
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
