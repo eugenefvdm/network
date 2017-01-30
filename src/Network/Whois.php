@@ -25,7 +25,7 @@ class Whois
     {
         $this->domain = $domain;
         $output = shell_exec("whois $domain");
-
+        // Check for bad result of .co.za WHOIS
         if (strpos($output, 'Please go away for') !== true) {
             $this->error = 'Rate limit exceeded: ' . $output;
         }
